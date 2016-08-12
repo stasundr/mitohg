@@ -1,2 +1,2 @@
 
-Copyright (C) 2016 stasundr
+Copyright (C) 2016 Stanislav Dryomov
