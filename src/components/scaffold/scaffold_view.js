@@ -3,6 +3,12 @@
 import React from 'react';
 import Dropzone from '../dropzone/dropzone_container';
 
+const statusIcons = {
+                'done': 'fa fa-check',
+             'pending': 'fa fa-hourglass',
+    'unsupported file': 'fa fa-ban'
+};
+
 export default class Scaffold extends React.Component {
     constructor() {
         super();
@@ -19,15 +25,18 @@ export default class Scaffold extends React.Component {
 
     _renderList(list) {
         return (
-            <ol>
+            <table className="table-responsive">
+                <tbody>
                 {
-                    list.map((element, index) => {
-                        return (
-                            <li key={index}>{element.label}</li>
-                        )
-                    })
+                    list.map((file, index) => (
+                        <tr key={index}>
+                            <td>{file.label}</td>
+                            <td><i className={statusIcons[file.status]} /></td>
+                        </tr>
+                    ))
                 }
-            </ol>
+                </tbody>
+            </table>
         )
     }
 

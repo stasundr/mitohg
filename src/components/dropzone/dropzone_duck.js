@@ -46,7 +46,7 @@ function uploadFiles(payload) {
     let data = new FormData();
     payload.files.forEach(file => data.append(file.name, file));
 
-    return fetch('/api/v1/file-upload', { method: 'POST', body: data })
+    return fetch('/api/v1/file', { method: 'POST', body: data })
         .then(response => response.json());
 }
 
