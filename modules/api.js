@@ -1,5 +1,7 @@
 'use strict';
 
+let queue = require('./task_queue');
+
 const
     express = require('express'),
      multer = require('multer');
@@ -17,6 +19,8 @@ router.post('/file-upload', upload.any(), (req, res) => {
             status: 'pending'
         }
     });
+
+    files.forEach(queue.addTask);
 
     res.json({ files, upload: true });
 });
