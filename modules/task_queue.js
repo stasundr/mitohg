@@ -52,6 +52,15 @@ let worker = {
                 else fulfill(JSON.parse(data))
             })
         });
+    },
+
+    getMultipleTasks: (file_ids) => {
+        return new Promise((fulfill, reject) => {
+            redis.mget(file_ids, (err, data) => {
+                if (err) reject(err);
+                else fulfill(JSON.parse(`[${data}]`))
+            })
+        });
     }
 };
 

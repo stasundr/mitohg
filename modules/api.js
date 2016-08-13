@@ -3,8 +3,9 @@
 let queue = require('./task_queue');
 
 const
-    express = require('express'),
-     multer = require('multer');
+       express = require('express'),
+    bodyParser = require('body-parser'),
+        multer = require('multer');
 
 const
     router = express.Router(),
@@ -29,6 +30,17 @@ router.post('/file', upload.any(), (req, res) => {
 router.get('/file/:id', (req, res) => {
     queue
         .getTask(req.params.id)
+        .then(task => res.json(task));
+});
+
+//
+router.post('/status', bodyParser.json(), (req, res) => {
+    console.log(req.body);
+
+    const ids = req.body;
+
+    queue
+        .getMultipleTasks(ids)
         .then(task => res.json(task));
 });
 

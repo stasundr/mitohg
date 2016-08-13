@@ -2,17 +2,17 @@
 
 import { connect } from 'react-redux';
 import component from './scaffold_view';
-//import { startFileUpload } from './scaffold_duck';
+import { fetchFileStatus } from './scaffold_duck';
 
 function mapStateToProps(state) {
     return {
-        list: state.list
+        list: state.fileList
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-
+        fetchFileStatus: (files) => dispatch(fetchFileStatus(files))
     }
 }
 

@@ -10,19 +10,6 @@ const statusIcons = {
 };
 
 export default class Scaffold extends React.Component {
-    constructor() {
-        super();
-        this.state = {counter: 0};
-    }
-
-    update() {
-        this.setState({counter: this.state.counter + 1});
-    }
-
-    componentWillMount() {
-        setInterval(() => this.update(), 5000);
-    }
-
     _renderList(list) {
         return (
             <table className="table-responsive">
@@ -41,7 +28,12 @@ export default class Scaffold extends React.Component {
     }
 
     render() {
-        const { list } = this.props;
+        const {
+            fetchFileStatus,
+            list
+        } = this.props;
+
+        setInterval(() => fetchFileStatus(list), 5000);
 
         return (
             <div>

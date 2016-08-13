@@ -4,7 +4,6 @@ import 'babel-polyfill';
 import { call, put } from 'redux-saga/effects';
 import { takeEvery } from 'redux-saga';
 import fetch from 'isomorphic-fetch';
-//import request from'superagent';
 
 import initialState from '../../initial_state';
 
@@ -16,14 +15,11 @@ const  READY = 'FILE_UPLOAD_FINISHED';
 function reducer(state = initialState, action) {
     switch (action.type) {
         case UPLOAD:
-            return Object.assign({}, state, {
-                isUploading: true,
-                files: action.files
-            });
+            return Object.assign({}, state, { isUploading: true });
 
         case READY:
             return Object.assign({}, state, {
-                list: [...state.list, ...action.payload.files],
+                fileList: [...state.fileList, ...action.payload.files],
                 isUploading: false
             });
 
@@ -42,6 +38,7 @@ export function processServerResponse(payload) {
     return { type: READY, payload }
 }
 
+//
 function uploadFiles(payload) {
     let data = new FormData();
     payload.files.forEach(file => data.append(file.name, file));

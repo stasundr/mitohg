@@ -2,8 +2,9 @@
 
 // Initial state for redux store
 const initialState = {
-    list: [],
-    isUploading: false
+    fileList: [],
+    isUploading: false,
+    isFetching: false
 };
 
 export default initialState;
